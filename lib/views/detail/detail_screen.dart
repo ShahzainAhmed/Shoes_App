@@ -5,6 +5,7 @@ import 'package:shoes_app/models/large_tiles_model.dart';
 import 'package:shoes_app/resources/app_colors.dart';
 import 'package:shoes_app/resources/app_typography.dart';
 import 'package:shoes_app/views/detail/widgets/bottomsheet_button.dart';
+import 'package:shoes_app/views/detail/widgets/shoe_size_selector.dart';
 
 class DetailScreen extends StatelessWidget {
   final LargeTilesModel largeTilesModel;
@@ -12,8 +13,6 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List shoeSizeList = [6, 6.5, 7, 7.5, 7.5, 8, 8.5, 9, 9.5];
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -25,7 +24,7 @@ class DetailScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(right: 20.w),
             child: const Icon(
-              Icons.notifications_none,
+              Icons.favorite_outline,
               color: AppColors.kBlackColor,
             ),
           ),
@@ -43,85 +42,60 @@ class DetailScreen extends StatelessWidget {
               color: AppColors.kWhiteColor,
               borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  largeTilesModel.title,
-                  style: AppTypography.kLight22,
-                ),
-                SizedBox(height: 6.h),
-                Text(
-                  largeTilesModel.subtitle,
-                  style: AppTypography.kLight10
-                      .copyWith(color: AppColors.kLightestGreyColor),
-                ),
-                SizedBox(height: 6.h),
-                Row(
-                  children: [
-                    const Icon(
-                      size: 22,
-                      Icons.star,
-                      color: AppColors.kOrangeColor,
-                    ),
-                    SizedBox(width: 5.w),
-                    Text(
-                      largeTilesModel.ratings,
-                      style: AppTypography.kLight12.copyWith(
-                        color: AppColors.kLightBlackColor,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    largeTilesModel.title,
+                    style: AppTypography.kLight22,
+                  ),
+                  SizedBox(height: 6.h),
+                  Text(
+                    largeTilesModel.subtitle,
+                    style: AppTypography.kLight10
+                        .copyWith(color: AppColors.kLightestGreyColor),
+                  ),
+                  SizedBox(height: 6.h),
+                  Row(
+                    children: [
+                      const Icon(
+                        size: 22,
+                        Icons.star,
+                        color: AppColors.kOrangeColor,
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20.h),
-                Text(
-                  "SELECT SIZE",
-                  style: AppTypography.kMedium12
-                      .copyWith(color: AppColors.kLightestGreyColor),
-                ),
-                SizedBox(height: 20.h),
-                SizedBox(
-                  height: 110.h,
-                  child: GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 5,
-                      crossAxisSpacing: 10.0,
-                      mainAxisSpacing: 15.0,
-                      childAspectRatio: 1.5,
-                    ),
-                    itemCount: shoeSizeList.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.kSilvercolor,
-                          borderRadius: BorderRadius.circular(12.0),
+                      SizedBox(width: 5.w),
+                      Text(
+                        largeTilesModel.ratings,
+                        style: AppTypography.kLight12.copyWith(
+                          color: AppColors.kLightBlackColor,
                         ),
-                        alignment: Alignment.center,
-                        child: Text(
-                          "US ${shoeSizeList[index].toString()}",
-                          style: AppTypography.kLight12.copyWith(
-                              color: AppColors.kLightBlackColor.withOpacity(1)),
-                        ),
-                      );
-                    },
+                      ),
+                    ],
                   ),
-                ),
-                Text(
-                  "DESCRIPTION",
-                  style: AppTypography.kMedium12
-                      .copyWith(color: AppColors.kLightestGreyColor),
-                ),
-                SizedBox(height: 10.h),
-                Text(
-                  largeTilesModel.description,
-                  style: AppTypography.kLight14.copyWith(
-                    color: AppColors.kLightBlackColor.withOpacity(0.7),
+                  SizedBox(height: 20.h),
+                  Text(
+                    "SELECT SIZE",
+                    style: AppTypography.kMedium12
+                        .copyWith(color: AppColors.kLightestGreyColor),
                   ),
-                  // textAlign: TextAlign.justify,
-                ),
-              ],
+                  SizedBox(height: 20.h),
+                  const ShoeSizeSelector(),
+                  Text(
+                    "DESCRIPTION",
+                    style: AppTypography.kMedium12
+                        .copyWith(color: AppColors.kLightestGreyColor),
+                  ),
+                  SizedBox(height: 10.h),
+                  Text(
+                    largeTilesModel.description,
+                    style: AppTypography.kLight14.copyWith(
+                      color: AppColors.kLightBlackColor.withOpacity(0.7),
+                    ),
+                  ),
+                  SizedBox(height: 100.h),
+                ],
+              ),
             ),
           ),
         ],
