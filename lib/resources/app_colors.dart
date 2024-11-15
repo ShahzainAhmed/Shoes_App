@@ -12,4 +12,5 @@ class AppColors {
   static const Color kTransparentColor = Colors.transparent;
   static const Color kOrangeColor = Color(0xffc5855c);
   static const Color kLightestGreyColor = Color(0xff5c6872);
+  static const Color kSilvercolor = Color(0xfff3f5f7);
 }

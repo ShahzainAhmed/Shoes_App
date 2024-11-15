@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:shoes_app/models/categories_model.dart';
 import 'package:shoes_app/models/large_tiles_model.dart';
 import 'package:shoes_app/resources/app_colors.dart';
 import 'package:shoes_app/resources/app_typography.dart';
+import 'package:shoes_app/views/detail/detail_screen.dart';
 import 'package:shoes_app/views/home/widgets/categories_tile.dart';
 import 'package:shoes_app/views/home/widgets/large_tiles.dart';
 import 'package:shoes_app/views/home/widgets/search_bar.dart';
@@ -77,6 +79,9 @@ class HomeScreen extends StatelessWidget {
               itemCount: largeTilesList.length,
               itemBuilder: (context, index) {
                 return LargeTiles(
+                  onTap: () => Get.to(
+                    DetailScreen(largeTilesModel: largeTilesList[index]),
+                  ),
                   largeTilesModel: largeTilesList[index],
                 );
               },
