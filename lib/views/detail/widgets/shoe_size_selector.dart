@@ -42,9 +42,9 @@ class _ShoeSizeSelectorState extends State<ShoeSizeSelector> {
                 borderRadius: BorderRadius.circular(12.0),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.kBlackColor.withOpacity(0.1),
-                    blurRadius: 7.0,
-                    offset: const Offset(2, 4),
+                    color: AppColors.kLightBlackColor.withOpacity(0.1),
+                    blurRadius: 3,
+                    offset: const Offset(0, 2),
                   ),
                 ],
               ),

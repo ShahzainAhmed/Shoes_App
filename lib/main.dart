@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:shoes_app/resources/app_colors.dart';
-import 'package:shoes_app/views/detail/detail_screen.dart';
-import 'package:shoes_app/views/home/home_screen.dart';
+import 'package:shoes_app/views/onboarding/onboarding_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        home: const HomeScreen(),
+        home: const OnboardingScreen(),
       ),
     );
   }

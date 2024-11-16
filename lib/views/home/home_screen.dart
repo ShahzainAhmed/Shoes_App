@@ -1,4 +1,6 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shoes_app/models/categories_model.dart';
@@ -15,6 +17,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
@@ -35,40 +39,58 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SearchBarWidget(),
-            SizedBox(height: 20.h),
-            SizedBox(
-              height: 55.h,
-              child: ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                scrollDirection: Axis.horizontal,
-                separatorBuilder: (context, index) => SizedBox(width: 14.w),
-                itemCount: categoriesList.length,
-                itemBuilder: (context, index) {
-                  return CategoriesTile(categoriesModel: categoriesList[index]);
-                },
-              ),
+            SizedBox(height: 10.h),
+            FadeInUp(
+              duration: const Duration(milliseconds: 600),
+              child: const SearchBarWidget(),
             ),
             SizedBox(height: 20.h),
+            FadeInUp(
+              duration: const Duration(milliseconds: 700),
+              child: SizedBox(
+                height: 70.h,
+                child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (context, index) => SizedBox(width: 14.w),
+                  itemCount: categoriesList.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(vertical: 5.h),
+                      child: Column(
+                        children: [
+                          CategoriesTile(
+                              categoriesModel: categoriesList[index]),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            SizedBox(height: 10.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "MOST POPULAR",
-                    style: AppTypography.kMedium14.copyWith(
-                      color: AppColors.kLightestGreyColor,
-                      letterSpacing: 1,
+              child: FadeInUp(
+                duration: const Duration(milliseconds: 800),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "MOST POPULAR",
+                      style: AppTypography.kMedium14.copyWith(
+                        color: AppColors.kLightestGreyColor,
+                        letterSpacing: 1,
+                      ),
                     ),
-                  ),
-                  Text(
-                    "See all",
-                    style: AppTypography.kMedium12
-                        .copyWith(color: AppColors.kOrangeColor),
-                  ),
-                ],
+                    Text(
+                      "See all",
+                      style: AppTypography.kMedium12
+                          .copyWith(color: AppColors.kOrangeColor),
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 20.h),
@@ -78,11 +100,14 @@ class HomeScreen extends StatelessWidget {
               shrinkWrap: true,
               itemCount: largeTilesList.length,
               itemBuilder: (context, index) {
-                return LargeTiles(
-                  onTap: () => Get.to(
-                    DetailScreen(largeTilesModel: largeTilesList[index]),
+                return FadeInUp(
+                  duration: const Duration(milliseconds: 900),
+                  child: LargeTiles(
+                    onTap: () => Get.to(
+                      DetailScreen(largeTilesModel: largeTilesList[index]),
+                    ),
+                    largeTilesModel: largeTilesList[index],
                   ),
-                  largeTilesModel: largeTilesList[index],
                 );
               },
             )
