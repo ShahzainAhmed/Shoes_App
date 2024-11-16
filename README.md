@@ -9,5 +9,5 @@
 
 ### Preview:
 <div align="center">
-  <video src="https://github.com/user-attachments/assets/c6671a66-7d5b-42f9-bf38-f46680037f94" width=100/>
+  <video src="https://github.com/user-attachments/assets/f49226c1-19e9-4db7-bbd0-e79f193ed5d7" width=100/>
 <div/>
